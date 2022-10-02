@@ -1,0 +1,42 @@
+Ques1: Explain what the simple list component does.
+Ans: List Component simply takes items as props which is an array of objects with a single key of text with a string as its value.Then it renders the list of items in an unordered list with background color as 
+red. User can click on the single item then it's background color will change from red to green it will show as selected then user can also click on different item and it's color will turn green and previous selected
+item's color will change back to red. User can also click on selected item to unselect it.
+
+Ques2: What problems/warnings are there with code?
+Ans: 1. The useState hook used in list component is written wrong, first selectedIndex should be there then setSelectedIndex should be there as setSelectedIndex is the function which is used to change or set the value
+of selectedIndex.
+
+2. The useEffect used in list component is of no use, it serves no purpose.
+
+3. There is error of key prop present there when we render the SingleListItem component in List component because we are rendering same component many times so it should have a unique key to distinguish it from other component.
+
+4. Then is there Error in proptypes used in WrappingListComponent instead of array it should be arrayOf because it is an array of obejcts and instead of shapeOf it should be shape because it is object of a particular shape i.e. text(key) and with string value.
+
+5. The Error was in style property used in list(li) tag used in SingleListItem component as isSelected should be equal to index so it can turn the background color green when selected. 
+
+6. There is an Error in WrappingSingleListItem proptypes in isSelected property instead of bool it should be number as we passing index in it.
+ 
+Ques3: Please fix, optimize, and/or modify the component as much as you is
+necessary.
+Ans: I have made changes in the code. The Changes made are following:
+1. First of all, I created a folder components in which created two seperate files  List.js and SingleListItem.js as the code provided in the github contained two different components i.e. a List component and SingleListItem component. As it provides better readability to the developer and makes it easy to debug.
+
+2. Then I change the positon of the useState as it was interchanged before it was 
+const [setSelectedIndex,selectedIndex] = useState()
+I changed it to 
+const [selectedIndex,setSelectedIndex] = useState()
+as setSelectedIndex is the function we use to set/change/update the value of selectedIndex.
+
+3. Then it optimized the handleClick function,
+before it was,
+setSelectedIndex(index), it was only updating the index but I optimized it to,
+setSelectedIndex(index === selectedIndex ? null : index), as it updates the value to null if the same selected tag is click and will unselect the selected index.
+
+4. Then I fixed the proptypes error in List component the array should be arrayOf as it an array of objects and shapeOf should be shape as it object with a particular key(text) and value(string).
+
+5. Then I fixed the list(li) tag reason is mentioned above answers no. point 5.
+
+6. Then I fixed the proptypes in SingleListItem component isSelected should have number value instead of boolean.
+
+Rest of the minor changes and the complete code can be seen in components folder.
